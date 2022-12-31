@@ -1,191 +1,87 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Coins</title>
-	
-<style>
-	body {
-	font-family: Arial, sans-serif;
-	text-align: center;
-	background-color: #f2f2f2;
-}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coins</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="big-wrapper light">
+        <img src="./img/shape.png" alt="" class="shape" />
 
-h1 {
-	color: #333333;
-	margin-top: 50px;
-	margin-bottom: 30px;
-}
+        <header>
+          <div class="container">
+            <div class="logo">
+              <img src="./img/logo.png" alt="Logo" />
+              <h3>Coins</h3>
+            </div>
 
-p {
-	font-size: 18px;
-	line-height: 1.5;
-	color: #666666;
-	margin-bottom: 50px;
-}
+            <div class="links">
+              <ul>
+                <li><a href="https://github.com/Nicolas05pino/Coins" class="btn">Github(Mac)</a></li>
+              </ul>
+            </div>
 
-button {
-	display: inline-block;
-	padding: 12px 24px;
-	font-size: 18px;
-	color: #ffffff;
-	background-color: #00bcd4;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: all 0.3s ease;
-}
+            <div class="overlay"></div>
 
-button:hover {
-	background-color: #008ba3;
-}
+            <div class="hamburger-menu">
+              <div class="bar"></div>
+            </div>
+          </div>
+        </header>
 
-#downloadCount {
-	font-size: 16px;
-	color: #888888;
-	margin-top: 50px;
-}
+        <div class="showcase-area">
+          <div class="container">
+            <div class="left">
+              <div class="big-title">
+                <h1>Coins.</h1>
+                <h2>Descarga gratuita!</h2>
+              </div>
+              <p class="text">
+                Encuentra el top de criptmonedas que más han suido o bajado en los ultimos minutos. Ahorra tiempo en tus operaciones de trading!
+              </p>
+              <div class="cta">
+                <a href="#" id="downloadButton" class="btn">Descargar(Windows)</a>
+              </div>
+            </div>
 
-#count {
-	font-weight: bold;
-	color: #00bcd4;
-}
-	
-/* estilos para pantallas grandes */
-@media (min-width: 1200px) {
-	#footerContainer {
-		flex-direction: row;
-	}
-	
-	#contactInfo, #socialLinks {
-		width: 45%;
-	}
-}
+            <div class="right">
+              <img src="./img/product.png" alt="Product Image" class="product" />
+            </div>
+          </div>
+        </div>
 
-/* estilos para pantallas medianas */
-@media (max-width: 1199px) and (min-width: 768px) {
-	#footerContainer {
-		flex-direction: column;
-	}
-	
-	#contactInfo, #socialLinks {
-		width: 100%;
-	}
-}
+        <div class="bottom-area">
+          <div class="container">
+            <button class="toggle-btn">
+              <i class="far fa-moon"></i>
+              <i class="far fa-sun"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
 
-/* estilos para pantallas pequeñas */
-@media (max-width: 767px) {
-	#footerContainer {
-		flex-direction: column;
-	}
-	
-	#contactInfo, #socialLinks {
-		width: 100%;
-	}
-	
-	#socialLinks a {
-		display: block;
-		margin: 10px 0;
-	}
-}
-footer {
-		background-color: #333333;
-		color: #ffffff;
-		padding: 40px 0;
-		margin-bottom: 0;
-	}
-	
-	#footerContainer {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 0 20px;
-	}
-	
-	#contactInfo, #socialLinks {
-		width: 45%;
-	}
-	
-	#contactInfo h3, #socialLinks h3 {
-		font-size: 18px;
-		font-weight: bold;
-		margin-bottom: 20px;
-		color: #cccccc;
-	}
-	
-	#contactInfo p, #socialLinks p {
-		font-size: 14px;
-		margin: 0;
-	}
-	
-	#socialLinks a {
-		display: inline-block;
-		margin-right: 10px;
-		font-size: 24px;
-		color: #cccccc;
-	}
-	
-	#socialLinks a:last-of-type {
-		margin-right: 0;
-	}
-	
-	#copyright {
-		font-size: 12px;
-		text-align: center;
-		margin: 20px 0;
-		color: #777777;
-	}
-</style>
+    <!-- JavaScript Files -->
 
-</head>
-<body>
-	<h1>Bienvenido a nuestra página de descarga.</h1>
-	<p>Hemos creado un archivo especialmente para ti y está disponible para descargar de forma gratuita.</p>
-	<button id="downloadButton">Descargar (Windows)</button>
-	<p id="downloadCount">Este archivo ha sido descargadoo <span id="count">0</span> veces.</p>
-	<!-- <button id="resetButton">Reiniciar contador</button> -->
-	<script>
-		function writeDownloadsToFile(downloads) {
-		const file = new File(['capture.txt'], 'capture.txt', {type: 'text/plain'});
-		const fileWriter = new FileWriter(file);
-		fileWriter.write(downloads.toString());
-		fileWriter.close();
-	}
-		let count = 0;
-		const downloadButton = document.getElementById('downloadButton');
-		downloadButton.addEventListener('click', function() {
-			const link = document.createElement('a');
-			link.href = 'coins.exe';
-			link.download = 'coins.exe';
-			link.click();
-			count++;
-			document.getElementById('count').innerHTML = count;
-			// guardar el valor del contador en el almacenamiento del navegador
-			localStorage.setItem('downloadCount', count);
-		});
-		
-		// cargar el valor del contador del almacenamiento del navegador
-		count = localStorage.getItem('downloadCount') || 0;
-		document.getElementById('count').innerHTML = count;
-
-			// función para reiniciar el contador
-		function resetDownloadCount() {
-			count = 0;
-			document.getElementById('count').innerHTML = count;
-			localStorage.setItem('downloadCount', count);
-		}
-		
-		// asignar la función de reinicio al botón de reinicio
-		const resetButton = document.getElementById('resetButton');
-		resetButton.addEventListener('click', resetDownloadCount);
-		
-	</script>
-	
-</body>
-
-<!-- <footer>
-	<p id="copyright">Copyright © 2020 Tu Empresa. Todos los derechos reservados.</p>
-</footer> -->
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <script src="./app.js"></script>
+    <script>	
+      let count = 0;
+      const downloadButton = document.getElementById('downloadButton');
+      downloadButton.addEventListener('click', function() {
+        const link = document.createElement('a');
+        link.href = 'coins.exe';
+        link.download = 'coins.exe';
+        link.click();
+        count++;
+        document.getElementById('count').innerHTML = count;
+        // guardar el valor del contador en el almacenamiento del navegador
+        localStorage.setItem('downloadCount', count);
+      });
+      </script>
+  </body>
 </html>
