@@ -138,13 +138,14 @@ footer {
 		color: #777777;
 	}
 </style>
+
 </head>
 <body>
 	<h1>Bienvenido a nuestra página de descarga.</h1>
 	<p>Hemos creado un archivo especialmente para ti y está disponible para descargar de forma gratuita.</p>
 	<button id="downloadButton">Descargar (Windows)</button>
 	<p id="downloadCount">Este archivo ha sido descargadoo <span id="count">0</span> veces.</p>
-	<button id="resetButton">Reiniciar contador</button>
+	<!-- <button id="resetButton">Reiniciar contador</button> -->
 	<script>
 		function writeDownloadsToFile(downloads) {
 		const file = new File(['capture.txt'], 'capture.txt', {type: 'text/plain'});
@@ -157,7 +158,7 @@ footer {
 		downloadButton.addEventListener('click', function() {
 			const link = document.createElement('a');
 			link.href = 'coins.exe';
-			link.download = 'nombre_del_archivo';
+			link.download = 'coins.exe';
 			link.click();
 			count++;
 			document.getElementById('count').innerHTML = count;
